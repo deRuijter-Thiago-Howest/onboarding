@@ -1,5 +1,5 @@
 {
-  "name": "journey",
+  "name": "onboarding",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "sass": "^1.93.2",
@@ -20,5 +19,14 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deRuijter-Thiago-Howest/onboarding.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deRuijter-Thiago-Howest/onboarding/issues"
+  },
+  "homepage": "https://github.com/deRuijter-Thiago-Howest/onboarding#readme",
+  "description": ""
 }

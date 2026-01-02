@@ -1,1 +1,8 @@
-@use "core" as *;
+@use 'core' as *;
+
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: $fw-light;
+  font-size: 1rem;
+  background-color: $color-base--light;
+}
