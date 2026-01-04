@@ -7,4 +7,31 @@
   pointer-events: none;
   // position: relative;
   // z-index: 4;
+  &--e {
+    top: -1.5rem;
+    height: 80%;
+    @media (width < 576px) {
+      top: -2rem;
+    }
+  }
+  &--b {
+    width: 120%;
+    height: 120%;
+    left: -2.5rem;
+    bottom: 3rem;
+  }
+  &--a {
+    bottom: 0rem;
+  }
+  &--d {
+    @media (width < 576px) {
+      top: 2.5rem;
+    }
+  }
+  &--c {
+    bottom: 3rem;
+    @media (width < 576px) {
+      bottom: 1.5rem;
+    }
+  }
 }

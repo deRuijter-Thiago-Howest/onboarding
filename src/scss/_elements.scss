@@ -1,7 +1,19 @@
 @use 'core' as *;
 
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   font-family: 'adobe-jenson-pro', serif;
   font-weight: $fw-light;
   font-size: 1rem;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

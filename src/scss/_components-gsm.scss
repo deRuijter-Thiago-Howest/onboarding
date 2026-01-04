@@ -1,19 +1,48 @@
 @use 'core' as *;
 
 .c-gsm {
-  width: 393px;
-  height: 852px;
-  margin: 0 auto;
+  width: 36.8vh;
+  max-width: 393px;
+  height: 80vh;
+  max-height: 852px;
   display: flex;
-  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   position: relative;
+  border-radius: 40px;
+  box-shadow: 0 0 0 12px $color-dark, 0 0 0 14px $color-accent, 0 20px 60px rgba(0, 0, 0, 0.3);
 
   &::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 30px;
+    background-color: $color-dark;
+    border-radius: 0 0 20px 20px;
+    z-index: 1000;
+  }
+
+  @media (max-width: 499px) {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+
+    &::before {
+      display: none;
+    }
+  }
 }

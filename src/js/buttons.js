@@ -3,11 +3,17 @@ import * as lottie from 'lottie-web';
 import welkom from '../lotties/frame-1.json';
 import frame2 from '../lotties/frame-2.json';
 import frame3 from '../lotties/frame-3.json';
+import frame4 from '../lotties/frame-4.json';
+import frame5 from '../lotties/frame-5.json';
 
 let lottieAnimation2;
 let lottieAnimation3;
+let lottieAnimation4;
+let lottieAnimation5;
 let playedScreen1 = false;
 let playedScreen2 = false;
+let playedScreen3 = false;
+let playedScreen4 = false;
 
 // #endregion
 
@@ -15,16 +21,23 @@ let playedScreen2 = false;
 const updateBallIndicators = () => {
   const gsm = document.querySelector('.c-gsm');
   const currentScreen = Math.round(gsm.scrollLeft / gsm.clientWidth);
-  const balls = document.querySelectorAll('.c-scherm-a__ball');
 
-  balls.forEach((ball, index) => {
-    ball.classList.toggle('c-scherm-a__ball--active', index === currentScreen - 1);
-  });
+  const screens = document.querySelectorAll('.c-scherm-a');
+  for (const screen of screens) {
+    const balls = screen.querySelectorAll('.c-scherm-a__ball');
+    let ballIndex = 0;
+    for (const ball of balls) {
+      ball.classList.toggle('c-scherm-a__ball--active', ballIndex === currentScreen - 1);
+      ballIndex++;
+    }
+  }
 
-  // Hide/show navigation on first screen using opacity
   const navigation = document.querySelector('.c-scherm-a__btns');
   if (navigation) {
     if (currentScreen === 0) {
+      navigation.style.opacity = '0';
+      navigation.style.pointerEvents = 'none';
+    } else if (currentScreen === 4) {
       navigation.style.opacity = '0';
       navigation.style.pointerEvents = 'none';
     } else {
@@ -33,13 +46,18 @@ const updateBallIndicators = () => {
     }
   }
 
-  // Play animations when reaching new screens
   if (currentScreen === 1 && !playedScreen1 && lottieAnimation2) {
     playedScreen1 = true;
     lottieAnimation2.play();
   } else if (currentScreen === 2 && !playedScreen2 && lottieAnimation3) {
     playedScreen2 = true;
     lottieAnimation3.play();
+  } else if (currentScreen === 4 && !playedScreen4 && lottieAnimation5) {
+    playedScreen4 = true;
+    lottieAnimation5.play();
+  } else if (currentScreen === 3 && !playedScreen3 && lottieAnimation4) {
+    playedScreen3 = true;
+    lottieAnimation4.play();
   }
 };
 // #endregion
@@ -61,7 +79,6 @@ const nextButtonsListener = () => {
         left: gsm.clientWidth,
         behavior: 'smooth',
       });
-      // Update balls after a delay to allow scroll to complete
       setTimeout(updateBallIndicators, 300);
     });
   }
@@ -77,7 +94,6 @@ const beforeButtonsListener = () => {
         left: -gsm.clientWidth,
         behavior: 'smooth',
       });
-      // Update balls after a delay to allow scroll to complete
       setTimeout(updateBallIndicators, 300);
     });
   }
@@ -90,7 +106,6 @@ const init = () => {
   nextButtonsListener();
   beforeButtonsListener();
 
-  // Listen for scroll to update balls
   const gsm = document.querySelector('.c-gsm');
   gsm.addEventListener('scroll', updateBallIndicators);
   gsm.addEventListener('scrollend', updateBallIndicators);
@@ -123,7 +138,23 @@ const init = () => {
     autoplay: false,
   });
 
-  // Hide navigation on first screen initially using opacity
+  document.querySelector('.js-submit-animation--5').classList.remove('u-hidden');
+  lottieAnimation5 = lottie.loadAnimation({
+    container: document.querySelector('.js-submit-animation--5'),
+    animationData: frame5,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+  });
+  document.querySelector('.js-submit-animation--4').classList.remove('u-hidden');
+  lottieAnimation4 = lottie.loadAnimation({
+    container: document.querySelector('.js-submit-animation--4'),
+    animationData: frame4,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+  });
+
   const navigation = document.querySelector('.c-scherm-a__btns');
   if (navigation) {
     navigation.style.opacity = '0';
