@@ -1,8 +1,14 @@
+@use 'core' as *;
+
 .c-scherm-a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  min-width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: start;
   &__top {
     height: 80%;
     width: 100%;
@@ -18,8 +24,9 @@
       bottom: 0;
       width: 100%;
       height: 100%;
+      z-index: 0;
       //   background: linear-gradient(0deg, #1e1f21 0.36%, rgba(0, 0, 0, 0) 132.41%);
-      background: linear-gradient(0deg, #1e1f21 0.36%, rgba(0, 0, 0, 0) 132.41%);
+      background: linear-gradient(0deg, $color-dark 0.36%, rgba(0, 0, 0, 0) 132.41%);
       pointer-events: none;
     }
   }
@@ -30,7 +37,89 @@
     text-align: center;
     height: 20%;
     align-items: center;
-    background-color: #1e1f21;
-    color: white;
+    background-color: $color-dark;
+    color: $color-light;
+    padding: 2rem 4rem;
+    padding-bottom: 6rem;
+  }
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 393px;
+    max-width: 393px;
+    position: fixed;
+    bottom: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 4rem;
+    z-index: 999;
+    pointer-events: auto;
+    box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  &__balls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__ball {
+    width: 4px;
+    height: 4px;
+    border-radius: 9px;
+    background-color: $color-accent--light;
+    display: block;
+    &--active {
+      background-color: $color-accent;
+      width: 9px;
+      height: 4px;
+      border-radius: 9px;
+    }
+  }
+
+  &__btn {
+    text-decoration: none;
+    color: $color-dark;
+    font-weight: $fw-bold;
+    padding: 8px 24px;
+    background-color: $color-accent;
+    border-radius: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &--small {
+      padding: 4px 12px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__text {
+    font-size: 1.25rem;
+    font-weight: $fw-medium;
+  }
+  &__title {
+    position: relative;
+    text-align: center;
+    color: $color-light;
+    margin-top: 2rem;
+    z-index: 4;
+  }
+  &--b {
+    & .c-scherm-a__top {
+      background-image: url(../img/track.png);
+    }
+  }
+  &--c {
+    & .c-scherm-a__top {
+      background-image: url(../img/share.png);
+    }
+  }
+  &--d {
+    & .c-scherm-a__top {
+      background-image: url(../img/badge.png);
+    }
   }
 }
