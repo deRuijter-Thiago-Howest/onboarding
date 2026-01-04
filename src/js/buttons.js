@@ -1,6 +1,13 @@
 // #region ***  DOM references                           ***********
 import * as lottie from 'lottie-web';
 import welkom from '../lotties/frame-1.json';
+import frame2 from '../lotties/frame-2.json';
+import frame3 from '../lotties/frame-3.json';
+
+let lottieAnimation2;
+let lottieAnimation3;
+let playedScreen1 = false;
+let playedScreen2 = false;
 
 // #endregion
 
@@ -24,6 +31,15 @@ const updateBallIndicators = () => {
       navigation.style.opacity = '1';
       navigation.style.pointerEvents = 'auto';
     }
+  }
+
+  // Play animations when reaching new screens
+  if (currentScreen === 1 && !playedScreen1 && lottieAnimation2) {
+    playedScreen1 = true;
+    lottieAnimation2.play();
+  } else if (currentScreen === 2 && !playedScreen2 && lottieAnimation3) {
+    playedScreen2 = true;
+    lottieAnimation3.play();
   }
 };
 // #endregion
@@ -88,6 +104,24 @@ const init = () => {
     autoplay: true,
   });
   lottieAnimation.play();
+
+  document.querySelector('.js-submit-animation--2').classList.remove('u-hidden');
+  lottieAnimation2 = lottie.loadAnimation({
+    container: document.querySelector('.js-submit-animation--2'),
+    animationData: frame2,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+  });
+
+  document.querySelector('.js-submit-animation--3').classList.remove('u-hidden');
+  lottieAnimation3 = lottie.loadAnimation({
+    container: document.querySelector('.js-submit-animation--3'),
+    animationData: frame3,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+  });
 
   // Hide navigation on first screen initially using opacity
   const navigation = document.querySelector('.c-scherm-a__btns');
